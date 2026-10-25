@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inducción · Universidad AIG</title>
+<meta name="description" content="Manual de inducción de AIG – Universidad de Arte, Innovación y Glamour">
+<meta name="theme-color" content="#141116">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosa:#E0508F; --rosa-fuerte:#C2185B; --rosa-pastel:#F8D7E6; --rosa-suave:#FDF0F6;
+  --negro:#141116; --gris:#5B5560; --blanco:#FFFFFF;
+  --dorado:#C9A227; --dorado-claro:#F3E3A6; --fondo:#FBF5F8;
+  --radio:18px; --sombra:0 10px 30px rgba(20,17,22,.10);
+  --fuente-titulo:'Playfair Display', Georgia, serif;
+  --fuente:'Poppins', system-ui, -apple-system, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font-family:var(--fuente);color:var(--negro);background:var(--fondo);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3{font-family:var(--fuente-titulo);line-height:1.2}
+button,a{font:inherit}
+button{cursor:pointer;border:none;background:none;color:inherit}
+a{color:var(--rosa-fuerte)}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--dorado);outline-offset:2px;border-radius:6px}
+
+/* ---------- Encabezado y navegación ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--negro);color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.topbar-in{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.marca{display:flex;align-items:center;gap:12px;min-width:max-content;text-decoration:none;color:inherit}
+.marca .logo{width:46px;height:46px;border-radius:50%;background:var(--rosa-pastel);overflow:hidden;display:grid;place-items:center;font-size:1.6rem;border:2px solid var(--dorado)}
+.marca .logo img{width:100%;height:100%;object-fit:cover}
+.marca strong{display:block;font-family:var(--fuente-titulo);font-size:1.3rem;color:var(--dorado-claro);line-height:1}
+.marca small{font-size:.72rem;opacity:.85}
+.nav{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.nav::-webkit-scrollbar{display:none}
+.nav button{white-space:nowrap;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);color:#f3f3f3;font-size:.85rem;transition:.25s}
+.nav button:hover{background:rgba(255,255,255,.18)}
+.nav button.activo{background:linear-gradient(135deg,var(--rosa),var(--dorado));color:#fff;font-weight:600}
+@media(max-width:700px){.topbar-in{gap:10px}.nav{width:100%;flex:none}}
+
+/* ---------- Vistas ---------- */
+main{flex:1;width:100%}
+.view{display:none;max-width:1200px;margin:auto;padding:34px 20px 50px}
+.view.activa{display:block;animation:entrar .5s ease both}
+@keyframes entrar{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.encabezado{margin-bottom:26px}
+.encabezado h2{font-size:clamp(1.8rem,4vw,2.5rem)}
+.encabezado p{color:var(--gris);max-width:720px}
+.encabezado::after{content:"";display:block;width:70px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--rosa),var(--dorado));margin-top:12px}
+.subtitulo{font-size:1.5rem;margin:36px 0 16px}
+
+/* ---------- Tarjetas ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.doble{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.card{position:relative;background:var(--blanco);border-radius:var(--radio);padding:24px;box-shadow:var(--sombra);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(20,17,22,.14)}
+.card h3{font-size:1.25rem;margin-bottom:8px}
+.card p{color:var(--gris);font-size:.95rem}
+.card.destacado{background:linear-gradient(135deg,var(--negro),#3b1830)}
+.card.destacado h3{color:var(--dorado-claro)}
+.card.destacado p{color:var(--rosa-pastel)}
+.icono{width:56px;height:56px;border-radius:16px;background:var(--rosa-pastel);display:grid;place-items:center;font-size:1.7rem;margin-bottom:14px}
+.acceso{text-align:left;width:100%;display:block}
+.accesos{margin-top:30px}
+.num-badge{position:absolute;top:16px;right:20px;font-family:var(--fuente-titulo);font-size:1.8rem;font-weight:700;color:var(--rosa-pastel)}
+
+/* ---------- Botones ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;background:linear-gradient(135deg,var(--rosa),var(--rosa-fuerte));color:#fff;font-weight:600;text-decoration:none;box-shadow:0 6px 16px rgba(224,80,143,.35);transition:.2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn.sec{background:#fff;color:var(--rosa-fuerte);border:2px solid var(--rosa);box-shadow:none}
+.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* ---------- Inicio / Hero ---------- */
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:44px;color:#fff;display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;box-shadow:var(--sombra);
+  background:radial-gradient(circle at 85% 15%,rgba(248,215,230,.35),transparent 45%),linear-gradient(135deg,var(--negro) 0%,#3b1830 55%,var(--rosa-fuerte) 100%)}
+.hero::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;border:2px solid rgba(201,162,39,.35);right:-120px;bottom:-140px}
+.etiqueta{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(201,162,39,.2);color:var(--dorado-claro);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem)}
+.hero h1 span{color:var(--dorado-claro)}
+.eslogan{font-family:var(--fuente-titulo);font-style:italic;font-size:1.2rem;color:var(--rosa-pastel);margin:12px 0 20px}
+.saludo input{width:100%;max-width:360px;padding:12px 16px;border-radius:12px;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font:inherit}
+.saludo input::placeholder{color:rgba(255,255,255,.7)}
+#saludo{margin:10px 0 18px;color:var(--rosa-pastel)}
+.video-card{background:#000;border-radius:20px;padding:8px;border:2px solid var(--dorado);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.video-card video{width:100%;border-radius:14px;display:block;background:#000}
+.pie-video{text-align:center;margin-top:10px;font-size:.9rem;color:var(--rosa-pastel)}
+.progreso{margin-top:6px}
+.barra{height:12px;border-radius:999px;background:rgba(20,17,22,.12);overflow:hidden}
+.barra span{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--rosa),var(--dorado));transition:width .6s ease}
+.hero .barra{background:rgba(255,255,255,.2)}
+.hero .progreso small{display:block;margin-top:6px;color:var(--rosa-pastel)}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding:28px}}
+
+/* ---------- Filosofía ---------- */
+.letra{font-family:var(--fuente-titulo);font-size:3.6rem;font-weight:700;background:linear-gradient(135deg,var(--rosa),var(--dorado));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:10px}
+.pilares .card{text-align:center}
+.valores{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.valor{background:#fff;border-radius:16px;padding:18px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sombra);border-left:5px solid var(--rosa)}
+.valor:nth-child(3n+2){border-left-color:var(--dorado)}
+.valor b{display:block}
+.valor p{font-size:.88rem;color:var(--gris)}
+.valor .emo{font-size:1.6rem}
+
+/* ---------- Identidad ---------- */
+.identidad{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:start}
+.mascota{background:#fff;border-radius:24px;padding:24px;text-align:center;box-shadow:var(--sombra)}
+.mascota img,.gia-fallback{width:100%;max-width:340px;margin:auto;border-radius:18px}
+.gia-fallback{aspect-ratio:1;display:grid;place-items:center;font-size:8rem;background:var(--rosa-pastel)}
+.mascota h3{margin-top:14px;font-size:1.5rem}
+.rasgos{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.rasgos span{background:var(--rosa-suave);color:var(--rosa-fuerte);padding:6px 12px;border-radius:999px;font-size:.85rem;font-weight:500}
+.colores{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:16px}
+.swatch{background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--sombra)}
+.swatch .color{height:100px;background:var(--c)}
+.swatch-info{padding:12px}
+.swatch-info b{display:block}
+.swatch-info small{color:var(--gris);font-size:.8rem}
+@media(max-width:860px){.identidad{grid-template-columns:1fr}}
+
+/* ---------- Organigrama ---------- */
+.org{display:flex;flex-direction:column;align-items:center;overflow-x:auto}
+.org-nodo{padding:12px 18px;border-radius:14px;font-weight:600;font-size:.95rem;box-shadow:0 6px 16px rgba(0,0,0,.12);transition:.2s;text-align:center}
+.org-nodo:hover{transform:translateY(-3px)}
+.org-raiz{background:linear-gradient(135deg,var(--rosa),var(--rosa-fuerte));color:#fff;font-size:1.1rem;padding:14px 26px}
+.org-linea{width:3px;height:26px;background:linear-gradient(var(--rosa-pastel),var(--dorado));border-radius:3px;margin:0 auto}
+.org-ramas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;width:100%;min-width:720px}
+.org-area{display:flex;flex-direction:column;align-items:center}
+.org-padre{background:var(--c);color:var(--negro);width:100%}
+.org-hijos{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:8px}
+.org-hijo{background:#fff;color:var(--negro);border:2px solid var(--c);font-weight:500;font-size:.88rem;width:100%}
+.pista{color:var(--gris);text-align:center;margin-top:18px;font-size:.9rem}
+@media(max-width:860px){.org-ramas{grid-template-columns:1fr;min-width:0}}
+
+/* ---------- Mi puesto ---------- */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{padding:9px 16px;border-radius:999px;background:#fff;border:2px solid var(--rosa-pastel);font-size:.88rem;transition:.2s;color:var(--negro)}
+.chip:hover{border-color:var(--rosa)}
+.chip.activo{background:var(--negro);color:#fff;border-color:var(--negro)}
+.panel-cab{display:flex;gap:16px;align-items:center}
+.panel-cab .icono{margin:0;flex-shrink:0}
+.panel-cab h2{font-size:1.8rem}
+.panel-cab p{color:var(--gris)}
+.progreso-puesto{margin-top:18px}
+.progreso-puesto small{color:var(--gris);display:block;margin-top:6px}
+.lista-tareas{list-style:none;display:grid;gap:10px;margin-top:8px}
+.tarea{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--rosa-suave);cursor:pointer;transition:.2s}
+.tarea:hover{background:var(--rosa-pastel)}
+.tarea input{width:20px;height:20px;accent-color:var(--rosa);margin-top:2px;flex-shrink:0}
+.tarea input:checked + span{text-decoration:line-through;opacity:.6}
+
+/* ---------- Reglamento ---------- */
+.tabs{display:inline-flex;background:#fff;border-radius:999px;padding:5px;box-shadow:var(--sombra);margin-bottom:10px;flex-wrap:wrap}
+.tab{padding:10px 18px;border-radius:999px;font-weight:500;color:var(--gris)}
+.tab.activo{background:var(--negro);color:#fff}
+.normas{list-style:none;display:grid;gap:12px;counter-reset:n}
+.normas li{background:#fff;padding:16px 18px 16px 66px;border-radius:14px;box-shadow:var(--sombra);position:relative}
+.normas li::before{counter-increment:n;content:counter(n);position:absolute;left:16px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--rosa),var(--dorado));color:#fff;display:grid;place-items:center;font-weight:700}
+
+/* ---------- Horarios ---------- */
+.horarios{display:grid;grid-template-columns:1.3fr .9fr;gap:24px;align-items:start}
+.tabla-wrap{overflow-x:auto;border-radius:16px;box-shadow:var(--sombra)}
+.tabla{width:100%;border-collapse:collapse;background:#fff}
+.tabla th{background:var(--negro);color:#fff;text-align:left;padding:14px 18px;font-weight:500}
+.tabla td{padding:14px 18px;border-bottom:1px solid #f1e6ec}
+.tabla tr:hover td{background:var(--rosa-suave)}
+.timeline{list-style:none;border-left:3px solid var(--rosa-pastel);margin:10px 0 0 12px}
+.timeline li{position:relative;padding:4px 0 22px 26px}
+.timeline li::before{content:"";position:absolute;left:-10px;top:8px;width:17px;height:17px;border-radius:50%;background:var(--dorado);box-shadow:0 0 0 4px #fff}
+.timeline time{display:inline-block;background:var(--negro);color:#fff;padding:3px 10px;border-radius:999px;font-size:.8rem;margin-bottom:6px}
+.timeline strong{display:block}
+.timeline p{color:var(--gris);font-size:.92rem}
+@media(max-width:860px){.horarios{grid-template-columns:1fr}}
+
+/* ---------- Contactos / Prestaciones ---------- */
+.resp{color:var(--rosa-fuerte)!important;font-weight:600}
+.canales{list-style:none;display:grid;gap:12px;margin-top:10px}
+.canales li{display:flex;gap:12px;align-items:flex-start;color:var(--gris)}
+.canales span{font-size:1.3rem}
+.checks{list-style:none;display:grid;gap:10px;margin-top:10px}
+.checks li{padding-left:30px;position:relative;color:var(--gris)}
+.checks li::before{content:"✦";position:absolute;left:0;color:var(--dorado);font-weight:700}
+
+/* ---------- Seguridad ---------- */
+.acordeon{background:#fff;border-radius:16px;box-shadow:var(--sombra);margin-bottom:12px;overflow:hidden}
+.acordeon summary{padding:18px 22px;cursor:pointer;font-weight:600;list-style:none;display:flex;gap:12px;align-items:center}
+.acordeon summary::-webkit-details-marker{display:none}
+.acordeon summary::after{content:"+";margin-left:auto;font-size:1.4rem;color:var(--rosa)}
+.acordeon[open] summary::after{content:"−"}
+.acordeon ul{padding:0 22px 20px 56px;color:var(--gris)}
+.acordeon li{margin:6px 0}
+.pasos{list-style:none;display:grid;gap:12px}
+.pasos li{display:flex;gap:14px;align-items:center;background:#fff;padding:14px 18px;border-radius:14px;box-shadow:var(--sombra)}
+.num{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--rosa),var(--rosa-fuerte));color:#fff;display:grid;place-items:center;font-weight:700;flex-shrink:0}
+.aviso{margin-top:18px;padding:16px 20px;border-radius:14px;background:var(--rosa-pastel);color:var(--negro);font-size:.92rem}
+
+/* ---------- Evaluación ---------- */
+.pregunta{background:#fff;border:none;border-radius:18px;padding:20px 22px;box-shadow:var(--sombra);margin-bottom:14px}
+.pregunta legend{font-weight:600;padding:0 6px 8px;font-size:1.02rem}
+.opcion{display:flex;gap:10px;align-items:center;padding:11px 14px;border:2px solid #f0e3ea;border-radius:12px;margin-top:8px;cursor:pointer;transition:.2s}
+.opcion:hover{border-color:var(--rosa-pastel)}
+.opcion:has(input:checked){border-color:var(--rosa);background:var(--rosa-suave)}
+.opcion input{accent-color:var(--rosa);width:18px;height:18px}
+.retro{margin-top:10px;font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:10px}
+.retro.ok{background:#e8f7ee;color:#1c7a43}
+.retro.no{background:#fdecef;color:#b3264a}
+#resultado:empty{display:none}
+#resultado{margin-top:18px;padding:18px 20px;border-radius:16px;background:var(--negro);color:#fff;font-size:1.02rem}
+#resultado small{color:var(--rosa-pastel)}
+
+/* ---------- Pie de página ---------- */
+footer{background:var(--negro);color:#ddd;text-align:center;padding:26px 20px;font-size:.88rem;margin-top:auto}
+footer a,footer .link{color:var(--dorado-claro)}
+footer .link{text-decoration:underline}
+
+@media(max-width:600px){
+  .hero{padding:24px}
+  .panel-cab{flex-direction:column;align-items:flex-start}
+  .view{padding:24px 16px 40px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="marca" href="#inicio" aria-label="Ir al inicio">
+      <div class="logo"><img src="assets/logo-aig.png" alt="Logo AIG" onerror="this.parentNode.textContent='🦩'"></div>
+      <div><strong>AIG</strong><small>Universidad de Arte, Innovación y Glamour</small></div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones de la inducción"></nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ INICIO ============ -->
+  <section id="inicio" class="view">
+    <div class="hero">
+      <div>
+        <span class="etiqueta">Manual de inducción · Colaboradores</span>
+        <h1>Bienvenida y bienvenido a <span>AIG</span></h1>
+        <p class="eslogan">“Donde la belleza se convierte en profesión”</p>
+        <div class="saludo">
+          <input id="nombre" type="text" placeholder="Escribe tu nombre" aria-label="Tu nombre" autocomplete="given-name">
+        </div>
+        <p id="saludo"></p>
+        <div class="progreso">
+          <div class="barra"><span id="barra-global"></span></div>
+          <small id="txt-global"></small>
+        </div>
+      </div>
+      <div>
+        <div class="video-card">
+         <<video controls playsinline preload="metadata" poster="assets/gia-saludo.png">
+  <source src="assets/bienvenida.mov" type="video/quicktime">
+  <source src="assets/bienvenida.mov" type="video/mp4">
+  Tu navegador no puede reproducir este video.
+</video>
+        </div>
+        <p class="pie-video">🎬 Video de bienvenida con GIA, nuestra flamenca</p>
+      </div>
+    </div>
+
+    <div class="grid accesos">
+      <button class="card acceso" data-ruta="filosofia"><span class="icono">🌸</span><h3>Filosofía</h3><p>Misión, visión y valores</p></button>
+      <button class="card acceso" data-ruta="identidad"><span class="icono">🦩</span><h3>Identidad</h3><p>GIA y nuestros colores</p></button>
+      <button class="card acceso" data-ruta="organigrama"><span class="icono">🗂️</span><h3>Organigrama</h3><p>Estructura y áreas</p></button>
+      <button class="card acceso" data-ruta="puesto"><span class="icono">✅</span><h3>Mi puesto</h3><p>Tus actividades y tu avance</p></button>
+      <button class="card acceso" data-ruta="politicas"><span class="icono">📜</span><h3>Políticas</h3><p>Lineamientos institucionales</p></button>
+      <button class="card acceso" data-ruta="reglamento"><span class="icono">📘</span><h3>Reglamento</h3><p>Normas de convivencia</p></button>
+      <button class="card acceso" data-ruta="horarios"><span class="icono">🕘</span><h3>Horarios</h3><p>Jornada y áreas</p></button>
+      <button class="card acceso" data-ruta="contactos"><span class="icono">📞</span><h3>Contactos</h3><p>Directorio y canales</p></button>
+      <button class="card acceso" data-ruta="prestaciones"><span class="icono">🎁</span><h3>Prestaciones</h3><p>Beneficios para ti y estudiantes</p></button>
+      <button class="card acceso" data-ruta="seguridad"><span class="icono">🛡️</span><h3>Seguridad</h3><p>Protocolos y emergencias</p></button>
+      <button class="card acceso" data-ruta="quiz"><span class="icono">🏅</span><h3>Evaluación</h3><p>Confirma lo que aprendiste</p></button>
+    </div>
+  </section>
+
+  <!-- ============ FILOSOFÍA ============ -->
+  <section id="filosofia" class="view">
+    <div class="encabezado">
+      <h2>Filosofía institucional</h2>
+      <p>Lo que nos define, lo que buscamos formar y los valores que guían nuestro día a día.</p>
+    </div>
+    <div class="doble" id="fil-mv"></div>
+    <h3 class="subtitulo">Los tres pilares de AIG</h3>
+    <div class="grid pilares" id="fil-pilares"></div>
+    <h3 class="subtitulo">Nuestros valores</h3>
+    <div class="valores" id="fil-valores"></div>
+  </section>
+
+  <!-- ============ IDENTIDAD ============ -->
+  <section id="identidad" class="view">
+    <div class="encabezado">
+      <h2>Identidad AIG</h2>
+      <p>Conoce a GIA, nuestra mascota institucional, y el significado de los colores que nos representan.</p>
+    </div>
+    <div class="identidad">
+      <div class="mascota">
+        <img src="assets/gia-mascota.png" alt="GIA, la flamenca mascota de AIG" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+        <div class="gia-fallback" hidden>🦩</div>
+        <h3>GIA, la flamenca de AIG</h3>
+        <p>Representa elegancia, seguridad, creatividad, confianza, determinación y la capacidad de destacar.</p>
+        <div class="rasgos">
+          <span>Elegancia</span><span>Seguridad</span><span>Creatividad</span><span>Confianza</span><span>Determinación</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Descripción de la institución</h3>
+        <p>AIG — Universidad de Arte, Innovación y Glamour es una institución educativa orientada a la formación integral de profesionales en belleza, estética e imagen personal. Integramos teoría y práctica, ética, emprendimiento y capacidad de adaptación.</p>
+        <br>
+        <h3>Justificación</h3>
+        <p>Arte, Innovación y Glamour son los pilares conceptuales de la institución. La flamenca GIA y la paleta cromática refuerzan belleza, profesionalismo, excelencia e innovación, generando identificación y sentido de pertenencia en toda la comunidad universitaria.</p>
+      </div>
+    </div>
+    <h3 class="subtitulo">Paleta de colores</h3>
+    <div class="colores" id="colores"></div>
+  </section>
+
+  <!-- ============ ORGANIGRAMA ============ -->
+  <section id="organigrama" class="view">
+    <div class="encabezado">
+      <h2>Organigrama</h2>
+      <p>Así está organizada la universidad. Toca cualquier cargo para ver sus funciones.</p>
+    </div>
+    <div class="card org" id="org"></div>
+    <p class="pista">💡 Consejo: toca un área o cargo para ir directo a sus actividades.</p>
+  </section>
+
+  <!-- ============ MI PUESTO ============ -->
+  <section id="puesto" class="view">
+    <div class="encabezado">
+      <h2>Mi puesto</h2>
+      <p>Selecciona tu área para ver tus funciones y actividades. Marca lo que ya completaste; tu avance se guarda en este dispositivo.</p>
+    </div>
+    <div class="chips" id="selector-puestos"></div>
+    <div id="panel-puesto"></div>
+  </section>
+
+  <!-- ============ POLÍTICAS ============ -->
+  <section id="politicas" class="view">
+    <div class="encabezado">
+      <h2>Políticas institucionales</h2>
+      <p>Lineamientos que orientan la toma de decisiones y el comportamiento de estudiantes, docentes y personal administrativo.</p>
+    </div>
+    <div class="grid" id="politicas-lista"></div>
+  </section>
+
+  <!-- ============ REGLAMENTO ============ -->
+  <section id="reglamento" class="view">
+    <div class="encabezado">
+      <h2>Reglamento institucional</h2>
+      <p>Normas de convivencia y funcionamiento que deben cumplir todos los integrantes de AIG.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab activo" data-tab="est" role="tab">Estudiantes</button>
+      <button class="tab" data-tab="doc" role="tab">Docentes y personal administrativo</button>
+    </div>
+    <div id="reg-contenido"></div>
+  </section>
+
+  <!-- ============ HORARIOS ============ -->
+  <section id="horarios" class="view">
+    <div class="encabezado">
+      <h2>Horarios institucionales</h2>
+      <p>Horarios por área y organización de la jornada académica.</p>
+    </div>
+    <div class="horarios">
+      <div>
+        <div class="tabla-wrap"><table class="tabla" id="tabla-horarios"></table></div>
+      </div>
+      <div class="card">
+        <h3>Jornada académica</h3>
+        <ol class="timeline" id="jornada"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTOS ============ -->
+  <section id="contactos" class="view">
+    <div class="encabezado">
+      <h2>Directorio y contactos</h2>
+      <p>Toca el botón para llamar directamente a cada responsable.</p>
+    </div>
+    <div class="grid" id="contactos-lista"></div>
+    <h3 class="subtitulo">Canales de atención</h3>
+    <div class="card"><ul class="canales" id="canales"></ul></div>
+  </section>
+
+  <!-- ============ PRESTACIONES ============ -->
+  <section id="prestaciones" class="view">
+    <div class="encabezado">
+      <h2>Prestaciones y beneficios</h2>
+      <p>Lo que AIG ofrece a su personal y a sus estudiantes, conforme a la legislación aplicable.</p>
+    </div>
+    <div class="doble">
+      <article class="card" id="prest-personal"></article>
+      <article class="card" id="prest-estudiantes"></article>
+    </div>
+  </section>
+
+  <!-- ============ SEGURIDAD ============ -->
+  <section id="seguridad" class="view">
+    <div class="encabezado">
+      <h2>Seguridad institucional</h2>
+      <p>Cuidamos a las personas, las instalaciones y los bienes de la universidad.</p>
+    </div>
+    <div id="seg-ambitos"></div>
+    <h3 class="subtitulo">Protocolo básico ante una emergencia</h3>
+    <ol class="pasos" id="protocolo"></ol>
+    <p class="aviso">⚠️ La implementación se ajusta a las condiciones del inmueble y a las disposiciones de protección civil, seguridad e higiene aplicables.</p>
+  </section>
+
+  <!-- ============ EVALUACIÓN ============ -->
+  <section id="quiz" class="view">
+    <div class="encabezado">
+      <h2>Evaluación de inducción</h2>
+      <p>Responde las preguntas para confirmar lo que aprendiste. Necesitas 80% o más para completar tu inducción.</p>
+    </div>
+    <form id="quiz-form"></form>
+    <div id="resultado" role="status" aria-live="polite"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© <span id="anio">2026</span> AIG — Universidad de Arte, Innovación y Glamour · Plataforma de inducción</p>
+  <p style="margin-top:8px">
+    <a href="qr.html">Generar código QR</a> &nbsp;·&nbsp;
+    <button class="link" data-accion="copiar">Copiar enlace</button>
+  </p>
+</footer>
+
+<script>
+/* =======================================================
+   1. CONTENIDO (tomado del documento institucional)
+   ======================================================= */
+const NOMBRES = {
+  inicio:'Inicio', filosofia:'Filosofía', identidad:'Identidad', organigrama:'Organigrama',
+  puesto:'Mi puesto', politicas:'Políticas', reglamento:'Reglamento', horarios:'Horarios',
+  contactos:'Contactos', prestaciones:'Prestaciones', seguridad:'Seguridad', quiz:'Evaluación'
+};
+const RUTAS = Object.keys(NOMBRES);
+
+const DATA = {
+  filosofia: {
+    descripcion: 'AIG — Universidad de Arte, Innovación y Glamour es una institución educativa orientada a la formación integral de profesionales en el área de la belleza, la estética y la imagen personal. Busca comprender la belleza como un campo profesional que requiere conocimientos científicos, creatividad, innovación, ética y emprendimiento.',
+    proposito: 'Formar profesionales capaces de transformar la industria de la belleza mediante conocimientos especializados, creatividad, innovación, ética y espíritu emprendedor, reconociendo la belleza como un campo de desarrollo profesional, artístico y empresarial.',
+    mision: 'Formar profesionales integrales en el ámbito de la belleza, la estética y la imagen personal, mediante una educación innovadora que articule conocimientos teóricos, habilidades prácticas, creatividad, tecnología, ética y emprendimiento.',
+    vision: 'Ser una institución de educación superior reconocida por su innovación, calidad académica y formación especializada en belleza, distinguiéndose por preparar profesionales creativos, competentes, éticos y emprendedores capaces de transformar su entorno.'
+  },
+  pilares: [
+    { letra:'A', titulo:'Arte', texto:'La capacidad creativa para transformar, expresar y comunicar a través de la belleza.' },
+    { letra:'I', titulo:'Innovación', texto:'La búsqueda constante de nuevas técnicas, herramientas, tendencias y conocimientos que respondan a las necesidades cambiantes de la industria.' },
+    { letra:'G', titulo:'Glamour', texto:'La elegancia, la seguridad, la expresión personal y la capacidad de proyectar una imagen profesional.' }
+  ],
+  valores: [
+    { e:'🏆', n:'Excelencia', t:'Formación de alta calidad que impulsa a superar las propias expectativas.' },
+    { e:'🎨', n:'Creatividad', t:'Imaginación, innovación y propuestas originales en belleza e imagen.' },
+    { e:'🤍', n:'Respeto', t:'Valoramos la diversidad, las ideas y las características de cada persona.' },
+    { e:'📋', n:'Responsabilidad', t:'Compromiso con la formación, el trabajo y las decisiones que impactan a otros.' },
+    { e:'⚖️', n:'Ética profesional', t:'Honestidad, integridad y respeto hacia clientes, colegas y comunidad.' },
+    { e:'💡', n:'Innovación', t:'Actualización constante y uso responsable de técnicas, tecnologías y tendencias.' },
+    { e:'💗', n:'Empatía', t:'Comprender necesidades y emociones para brindar una atención humana.' },
+    { e:'🌈', n:'Inclusión', t:'Un espacio donde todas las personas aprenden y se expresan con libertad.' },
+    { e:'🚀', n:'Emprendimiento', t:'Iniciativa y competencias para crear proyectos, negocios y oportunidades.' },
+    { e:'✨', n:'Confianza', t:'Seguridad personal y profesional para reconocer y proyectar el talento.' }
+  ],
+  colores: [
+    { n:'Rosa', h:'#E0508F', t:'Belleza, creatividad, feminidad y expresión personal' },
+    { n:'Rosa pastel', h:'#F8D7E6', t:'Sensibilidad, cercanía, armonía y elegancia' },
+    { n:'Negro', h:'#141116', t:'Profesionalismo, sofisticación, seguridad y carácter' },
+    { n:'Blanco', h:'#FFFFFF', t:'Limpieza, equilibrio, claridad y profesionalismo' },
+    { n:'Dorado', h:'#C9A227', t:'Excelencia, prestigio, aspiración y reconocimiento' }
+  ],
+  puestos: [
+    { id:'dg', icono:'🏛️', nombre:'Dirección General',
+      desc:'Máxima autoridad de la Universidad AIG. Dirige, coordina y supervisa el funcionamiento general de la institución.',
+      funciones:[
+        'Establecer los objetivos, las políticas y las estrategias institucionales.',
+        'Coordinar y supervisar el trabajo de los departamentos.',
+        'Tomar decisiones administrativas, académicas y financieras.',
+        'Aprobar planes de trabajo y presupuestos.',
+        'Representar a la universidad ante otras instituciones.',
+        'Evaluar el cumplimiento de la misión, visión y objetivos de AIG.'] },
+    { id:'da', icono:'🎓', nombre:'Dirección Académica',
+      desc:'Organiza, supervisa y evalúa las actividades educativas para garantizar la calidad de la enseñanza y el aprendizaje.',
+      funciones:[
+        'Coordinar los planes y programas de estudio.',
+        'Organizar horarios, grupos y actividades académicas.',
+        'Supervisar el desempeño de los docentes.',
+        'Promover la actualización profesional del personal académico.',
+        'Evaluar los resultados de aprendizaje.',
+        'Impulsar la innovación en los procesos de enseñanza.'] },
+    { id:'se', icono:'🗂️', nombre:'Servicios Escolares',
+      desc:'Administra los registros y trámites académicos de los estudiantes durante su trayectoria escolar.',
+      funciones:[
+        'Realizar inscripciones y reinscripciones.',
+        'Integrar y actualizar expedientes estudiantiles.',
+        'Registrar calificaciones y controlar historiales académicos.',
+        'Elaborar constancias y documentos escolares.',
+        'Informar sobre calendarios y trámites académicos.',
+        'Apoyar los procesos de egreso y titulación.'] },
+    { id:'cd', icono:'👩‍🏫', nombre:'Coordinación Docente',
+      desc:'Coordina y da seguimiento al trabajo de los profesores para asegurar el cumplimiento de los programas educativos.',
+      funciones:[
+        'Organizar las actividades y cargas de trabajo de los docentes.',
+        'Revisar planeaciones didácticas.',
+        'Supervisar el cumplimiento de los contenidos de las asignaturas.',
+        'Promover reuniones de trabajo académico.',
+        'Identificar necesidades de capacitación docente.',
+        'Dar seguimiento al desempeño de los profesores y proponer mejoras.'] },
+    { id:'mv', icono:'📣', nombre:'Marketing y Vinculación',
+      desc:'Promueve la imagen institucional, difunde la oferta educativa y establece relaciones con organizaciones del sector de la belleza.',
+      funciones:[
+        'Diseñar estrategias de promoción y publicidad.',
+        'Difundir la oferta académica para atraer estudiantes.',
+        'Organizar eventos, exposiciones y campañas institucionales.',
+        'Fortalecer la identidad y el posicionamiento de la universidad.',
+        'Establecer convenios con empresas, salones de belleza y marcas especializadas.',
+        'Promover oportunidades de prácticas profesionales y empleo para los estudiantes.'] },
+    { id:'com', icono:'💬', nombre:'Comunicación',
+      desc:'Gestiona la comunicación interna y externa para mantener informada a la comunidad educativa y fortalecer la identidad institucional.',
+      funciones:[
+        'Elaborar comunicados y avisos institucionales.',
+        'Difundir eventos, actividades y logros académicos.',
+        'Administrar contenidos para redes sociales y otros medios.',
+        'Mantener una comunicación clara con estudiantes, docentes y colaboradores.',
+        'Apoyar la organización y difusión de eventos.',
+        'Cuidar el uso correcto del nombre, logotipo y demás elementos de identidad de AIG.'] },
+    { id:'ti', icono:'💻', nombre:'Tecnología e Innovación',
+      desc:'Administra los recursos tecnológicos y promueve herramientas digitales para mejorar los procesos educativos y administrativos.',
+      funciones:[
+        'Mantener en funcionamiento los equipos de cómputo y las redes.',
+        'Brindar soporte técnico a estudiantes y personal.',
+        'Administrar plataformas educativas y herramientas digitales.',
+        'Promover el uso responsable de la inteligencia artificial.',
+        'Apoyar la incorporación de tecnologías innovadoras en la enseñanza.',
+        'Proteger y respaldar la información digital institucional.'] },
+    { id:'af', icono:'💰', nombre:'Administración y Finanzas',
+      desc:'Administra los recursos económicos y materiales para garantizar el uso eficiente del presupuesto y la continuidad de las operaciones.',
+      funciones:[
+        'Elaborar y controlar el presupuesto institucional.',
+        'Registrar ingresos y egresos.',
+        'Gestionar pagos a proveedores y personal.',
+        'Supervisar los gastos operativos.',
+        'Coordinar las compras y el abastecimiento.',
+        'Elaborar reportes financieros para la Dirección General.',
+        'Controlar los recursos materiales y los inventarios.'] },
+    { id:'con', icono:'🧾', nombre:'Contabilidad',
+      desc:'Registra, organiza y analiza las operaciones financieras para mantener información económica confiable y apoyar la toma de decisiones.',
+      funciones:[
+        'Registrar ingresos, gastos y operaciones contables.',
+        'Elaborar estados financieros y reportes periódicos.',
+        'Controlar los comprobantes fiscales.',
+        'Apoyar el cumplimiento de las obligaciones fiscales.',
+        'Conciliar cuentas y verificar movimientos financieros.',
+        'Proporcionar información para la planeación presupuestaria.'] },
+    { id:'ms', icono:'🛠️', nombre:'Mantenimiento y Seguridad',
+      desc:'Conserva las instalaciones en condiciones adecuadas y protege a las personas y los bienes de la universidad.',
+      funciones:[
+        'Realizar revisiones periódicas de las instalaciones.',
+        'Reparar mobiliario, equipos y servicios básicos.',
+        'Coordinar el mantenimiento preventivo y correctivo.',
+        'Reportar desperfectos y riesgos; verificar que aulas y talleres estén en condiciones adecuadas.',
+        'Controlar el acceso de personas a las instalaciones.',
+        'Vigilar las áreas comunes y los accesos.',
+        'Reportar incidentes y situaciones de riesgo.',
+        'Apoyar la aplicación de protocolos de emergencia y evacuación.',
+        'Promover condiciones seguras para estudiantes, docentes y visitantes.'] }
+  ],
+  politicas: [
+    { i:'🎓', t:'Calidad académica', d:'Garantizar una formación integral que combine conocimientos teóricos, habilidades prácticas, creatividad e innovación en belleza.' },
+    { i:'🤝', t:'Respeto e inclusión', d:'Promover un ambiente libre de discriminación, acoso, violencia y cualquier forma de trato irrespetuoso.' },
+    { i:'⚖️', t:'Ética profesional', d:'Fomentar la honestidad, la responsabilidad y el respeto hacia clientes, compañeros y docentes.' },
+    { i:'🧴', t:'Higiene y cuidado personal', d:'Mantener limpieza, desinfección y presentación profesional en aulas, talleres y áreas de práctica.' },
+    { i:'🪮', t:'Uso de instalaciones', d:'Utilizar responsablemente el mobiliario, los equipos, los productos cosméticos y las herramientas de trabajo.' },
+    { i:'🔒', t:'Protección de datos', d:'Resguardar la información personal, académica y administrativa de estudiantes y colaboradores.' },
+    { i:'💡', t:'Innovación', d:'Promover la actualización constante en técnicas de belleza, herramientas digitales y tendencias profesionales.' },
+    { i:'🛡️', t:'Seguridad', d:'Establecer medidas preventivas y protocolos de actuación ante accidentes, emergencias y situaciones de riesgo.' },
+    { i:'📢', t:'Comunicación institucional', d:'Utilizar los canales oficiales para informar sobre actividades académicas, trámites, pagos y avisos importantes.' },
+    { i:'🌿', t:'Responsabilidad ambiental', d:'Favorecer el uso responsable de materiales, la reducción de residuos y la disposición adecuada de productos de práctica.' }
+  ],
+  reglamento: {
+    estudiantes: [
+      'Asistir puntualmente a clases y cumplir con las actividades académicas y prácticas.',
+      'Portar el uniforme o la vestimenta profesional que establezca cada programa académico.',
+      'Mantener una conducta respetuosa con docentes, compañeros, personal administrativo y visitantes.',
+      'Limpiar y desinfectar las herramientas y estaciones de trabajo antes y después de cada práctica.',
+      'Utilizar adecuadamente los productos cosméticos, equipos y materiales proporcionados por la institución.',
+      'No utilizar herramientas, sustancias o equipos sin autorización y capacitación previa.',
+      'Evitar el uso de teléfonos celulares durante las actividades prácticas, salvo autorización docente.',
+      'Respetar los horarios de entrada, salida, recesos y entrega de trabajos.',
+      'Informar al docente o al área correspondiente sobre accidentes, daños o situaciones de riesgo.',
+      'Respetar la privacidad de los modelos y clientes de práctica; solicitar autorización antes de tomar o publicar fotografías.'
+    ],
+    docentes: [
+      'Cumplir con los horarios y las responsabilidades asignadas a cada puesto.',
+      'Planear y desarrollar las actividades conforme a los programas académicos autorizados.',
+      'Mantener un trato profesional, respetuoso e incluyente.',
+      'Resguardar los expedientes, registros y documentos institucionales.',
+      'Reportar incidentes, desperfectos y necesidades de mantenimiento.',
+      'Utilizar responsablemente los recursos y equipos de la universidad.',
+      'Participar en reuniones, capacitaciones y actividades institucionales programadas.'
+    ]
+  },
+  horarios: [
+    ['Atención administrativa', 'Lunes a viernes, 8:00 a. m. – 3:00 p. m.'],
+    ['Servicios Escolares', 'Lunes a viernes, 8:00 a. m. – 3:00 p. m.'],
+    ['Clases teóricas', 'Lunes a viernes, 8:00 a. m. – 12:30 p. m.'],
+    ['Talleres y prácticas de belleza', 'Lunes a viernes, 2:00 p. m. – 5:00 p. m.'],
+    ['Atención de Dirección General', 'Con cita previa, dentro del horario administrativo'],
+    ['Mantenimiento y seguridad', 'Cobertura durante toda la operación institucional, conforme a los turnos asignados']
+  ],
+  jornada: [
+    { h:'8:00 – 10:00 a. m.', t:'Clases teóricas', d:'Sesiones de teoría y fundamentos.' },
+    { h:'10:00 – 10:30 a. m.', t:'Receso', d:'Pausa para descanso.' },
+    { h:'10:30 a. m. – 12:30 p. m.', t:'Clases y actividades académicas', d:'Continuación de clases y actividades.' },
+    { h:'2:00 – 5:00 p. m.', t:'Talleres prácticos', d:'Para los grupos que tengan programada esta actividad.' }
+  ],
+  contactos: [
+    { i:'🏛️', depto:'Dirección General', resp:'Lic. Gabriela Celeste Hernández Tinoco', tel:'4451064945' },
+    { i:'🎓', depto:'Dirección Académica', resp:'Lic. Ivette Guzmán Jiménez', tel:'4451408131' },
+    { i:'🗂️', depto:'Servicios Escolares', resp:'Lic. Andrea Díaz Vargas', tel:'4451226115' },
+    { i:'👩‍🏫', depto:'Coordinación Docente', resp:'Lic. María Murillo Bedolla', tel:'4451081676' }
+  ],
+  canales: [
+    { i:'🏢', t:'Atención presencial en recepción.' },
+    { i:'✉️', t:'serviciosescolares.aig@gmail.com', href:'mailto:serviciosescolares.aig@gmail.com' },
+    { i:'☎️', t:'Teléfono de recepción: 445 457 9220', href:'tel:+524454579220' },
+    { i:'💻', t:'Plataforma educativa para avisos académicos.' },
+    { i:'🛠️', t:'Canal de reportes para incidentes y solicitudes de mantenimiento.' }
+  ],
+  prestaciones: {
+    personal: [
+      'Salario acorde con el puesto y las condiciones de contratación.',
+      'Inscripción a la seguridad social cuando corresponda legalmente.',
+      'Aguinaldo y vacaciones conforme a la legislación laboral aplicable.',
+      'Prima vacacional conforme a las disposiciones legales.',
+      'Capacitación y actualización profesional.',
+      'Oportunidades de desarrollo y promoción interna.',
+      'Reconocimientos por desempeño y participación institucional.',
+      'Condiciones de trabajo seguras, dignas y respetuosas.'
+    ],
+    estudiantes: [
+      'Formación teórica y práctica especializada en belleza, estética e imagen personal.',
+      'Acceso a herramientas, equipos y espacios de práctica, según cada programa.',
+      'Orientación académica y acompañamiento docente.',
+      'Participación en talleres, exposiciones y actividades de actualización.',
+      'Vinculación con salones de belleza, empresas y marcas del sector.',
+      'Orientación para el emprendimiento y desarrollo de proyectos profesionales.',
+      'Acceso a recursos tecnológicos y educativos institucionales.',
+      'Información sobre oportunidades de prácticas profesionales y empleo.'
+    ]
+  },
+  seguridad: [
+    { i:'🚨', t:'Seguridad física y protección civil', items:[
+      'Mantener señalizadas las rutas de evacuación y salidas de emergencia.',
+      'Revisar periódicamente extintores, instalaciones eléctricas y accesos.',
+      'Mantener despejados pasillos, escaleras y salidas.',
+      'Contar con procedimientos de evacuación y puntos de reunión.',
+      'Capacitar al personal para actuar ante incendios, sismos y otras emergencias.'] },
+    { i:'🧼', t:'Higiene y seguridad en talleres', items:[
+      'Desinfectar herramientas y superficies entre prácticas.',
+      'Utilizar guantes y otros equipos de protección cuando corresponda.',
+      'Revisar las etiquetas e indicaciones de los productos cosméticos.',
+      'Evitar la reutilización de materiales desechables.',
+      'Separar y desechar los residuos de forma segura.',
+      'Suspender una práctica cuando exista un riesgo para las personas.'] },
+    { i:'🔐', t:'Seguridad y control de acceso', items:[
+      'Registrar las visitas cuando el procedimiento institucional lo establezca.',
+      'Mantener vigilancia en entradas y áreas comunes.',
+      'Evitar el ingreso de personas no autorizadas a talleres y oficinas.',
+      'Reportar objetos extraviados, daños o conductas de riesgo.',
+      'Proteger los bienes institucionales sin vulnerar la privacidad de la comunidad.'] },
+    { i:'🩹', t:'Atención de accidentes y emergencias médicas', items:[
+      'Mantener un botiquín accesible y revisar periódicamente su contenido.',
+      'Designar personal capacitado para brindar primeros auxilios.',
+      'Registrar y comunicar los accidentes.',
+      'Solicitar servicios de emergencia cuando la situación lo requiera.',
+      'Notificar a los contactos de emergencia autorizados, respetando la confidencialidad.'] }
+  ],
+  protocolo: [
+    'Identificar el riesgo y suspender la actividad.',
+    'Avisar al responsable de Mantenimiento y Seguridad.',
+    'Activar el procedimiento de emergencia correspondiente.',
+    'Evacuar de forma ordenada cuando sea necesario y dirigirse al punto de reunión.',
+    'Solicitar ayuda especializada si existe peligro o una persona lesionada.',
+    'Registrar el incidente y evaluar las medidas preventivas necesarias.'
+  ],
+  quiz: [
+    { p:'¿Qué significan las siglas AIG?', ops:['Arte, Innovación y Glamour','Academia, Imagen y Gestión','Arte, Idiomas y Galería','Administración, Innovación y Gestión'], r:0 },
+    { p:'¿Cómo se llama la mascota institucional?', ops:['GIA, la flamenca','Lía, la garza','Mía, la mariposa','Coco, el colibrí'], r:0 },
+    { p:'¿En qué horario se realizan los talleres y prácticas de belleza?', ops:['8:00 – 12:30 p. m.','10:30 a. m. – 12:30 p. m.','2:00 – 5:00 p. m.','3:00 – 6:00 p. m.'], r:2 },
+    { p:'¿Qué debes hacer antes de tomar o publicar fotos de modelos o clientes?', ops:['Nada, es libre','Solicitar autorización','Publicarlas solo si son anónimas','Pedirlo al coordinador de tu área'], r:1 },
+    { p:'Ante una emergencia, ¿cuál es el primer paso del protocolo?', ops:['Evacuar de inmediato','Identificar el riesgo y suspender la actividad','Llamar a un familiar','Continuar la práctica'], r:1 },
+    { p:'¿Qué política promueve un ambiente libre de discriminación y acoso?', ops:['Política de innovación','Política de respeto e inclusión','Política de uso de instalaciones','Política de responsabilidad ambiental'], r:1 },
+    { p:'¿Qué área administra inscripciones, reinscripciones y expedientes?', ops:['Contabilidad','Servicios Escolares','Comunicación','Mantenimiento y Seguridad'], r:1 }
+  ]
+};
+
+const ORG = [
+  { id:'da', c:'#F7C948', hijos:[['se','Servicios Escolares'],['cd','Coordinación Docente']] },
+  { id:'mv', c:'#A78BFA', hijos:[['com','Comunicación'],['ti','Tecnología e Innovación']] },
+  { id:'af', c:'#7DB9F2', hijos:[['con','Contabilidad'],['ms','Servicios Generales / Mantenimiento y Seguridad']] }
+];
+
+/* =======================================================
+   2. UTILIDADES Y ALMACENAMIENTO LOCAL
+   ======================================================= */
+const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const LS = {
+  get(k, d){ try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const fmtTel = t => t.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
+const puestoActual = () => LS.get('aig-ultimo-puesto', 'dg');
+const buscarPuesto = id => DATA.puestos.find(p => p.id === id) || DATA.puestos[0];
+
+/* =======================================================
+   3. RENDERIZADO
+   ======================================================= */
+function renderFilosofia(){
+  const f = DATA.filosofia;
+  $('#fil-mv').innerHTML = [
+    ['🏛️', 'Descripción de la institución', f.descripcion, 'destacado'],
+    ['🎯', 'Propósito institucional', f.proposito],
+    ['🧭', 'Misión', f.mision],
+    ['🌟', 'Visión', f.vision]
+  ].map(([i, t, x, c = '']) => `<article class="card ${c}"><span class="icono">${i}</span><h3>${t}</h3><p>${x}</p></article>`).join('');
+
+  $('#fil-pilares').innerHTML = DATA.pilares.map(p =>
+    `<article class="card"><div class="letra">${p.letra}</div><h3>${p.titulo}</h3><p>${p.texto}</p></article>`).join('');
+
+  $('#fil-valores').innerHTML = DATA.valores.map(v =>
+    `<div class="valor"><span class="emo">${v.e}</span><div><b>${v.n}</b><p>${v.t}</p></div></div>`).join('');
+}
+
+function renderIdentidad(){
+  $('#colores').innerHTML = DATA.colores.map(c =>
+    `<div class="swatch"><div class="color" style="--c:${c.h}"></div>
+     <div class="swatch-info"><b>${c.n}</b><small>${c.h}</small><br><small>${c.t}</small></div></div>`).join('');
+}
+
+function renderOrganigrama(){
+  const nombre = id => buscarPuesto(id).nombre;
+  $('#org').innerHTML = `
+    <button class="org-nodo org-raiz" data-ir="dg">🏛️ Dirección General</button>
+    <div class="org-linea"></div>
+    <div class="org-ramas">
+      ${ORG.map(a => `
+        <div class="org-area">
+          <button class="org-nodo org-padre" style="--c:${a.c}" data-ir="${a.id}">${nombre(a.id)}</button>
+          <div class="org-linea"></div>
+          <div class="org-hijos">
+            ${a.hijos.map(([id, n]) => `<button class="org-nodo org-hijo" style="--c:${a.c}" data-ir="${id}">${n}</button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function elegirPuesto(id){
+  const fijo = LS.get('aig-puesto-fijo', null);
+  if(fijo){ id = fijo; }
+  const p = buscarPuesto(id);
+  LS.set('aig-ultimo-puesto', p.id);
+  if(fijo){
+    $('#selector-puestos').innerHTML = `<p style="color:var(--gris);font-size:.95rem">🔒 Tu puesto asignado: <b>${p.icono} ${p.nombre}</b></p>`;
+  } else {
+    $('#selector-puestos').innerHTML = DATA.puestos.map(x =>
+      `<button class="chip${x.id === p.id ? ' activo' : ''}" data-ir="${x.id}" aria-pressed="${x.id === p.id}">${x.icono} ${x.nombre}</button>`).join('');
+  }
+
+  const hechas = LS.get('aig-tareas', {})[p.id] || [];
+  $('#panel-puesto').innerHTML = `
+    <article class="card">
+      <div class="panel-cab">
+        <span class="icono">${p.icono}</span>
+        <div><h2>${p.nombre}</h2><p>${p.desc}</p></div>
+      </div>
+      <h3 class="subtitulo">Mis actividades</h3>
+      <div class="progreso-puesto">
+        <div class="barra"><span id="barra-puesto"></span></div>
+        <small id="txt-puesto"></small>
+      </div>
+      <ul class="lista-tareas">
+        ${p.funciones.map((f, i) => `
+          <li><label class="tarea">
+            <input type="checkbox" data-tarea="${i}" ${hechas.includes(i) ? 'checked' : ''}>
+            <span>${f}</span>
+          </label></li>`).join('')}
+      </ul>
+      <div class="acciones">
+        <button class="btn" data-accion="todo">✔ Marcar todo</button>
+        <button class="btn sec" data-accion="reiniciar">Reiniciar</button>
+      </div>
+    </article>`;
+  actualizarBarraPuesto(p.id);
+}
+
+function actualizarBarraPuesto(id){
+  const p = buscarPuesto(id);
+  const n = (LS.get('aig-tareas', {})[id] || []).length;
+  const pct = Math.round(n / p.funciones.length * 100);
+  $('#barra-puesto').style.width = pct + '%';
+  $('#txt-puesto').textContent = `${n} de ${p.funciones.length} actividades completadas (${pct}%)` + (pct === 100 ? ' 🎉' : '');
+}
+
+function renderPoliticas(){
+  $('#politicas-lista').innerHTML = DATA.politicas.map((p, i) =>
+    `<article class="card"><span class="num-badge">${String(i + 1).padStart(2, '0')}</span>
+     <span class="icono">${p.i}</span><h3>${p.t}</h3><p>${p.d}</p></article>`).join('');
+}
+
+function setReglamento(tipo){
+  $$('.tab').forEach(t => { const on = t.dataset.tab === tipo; t.classList.toggle('activo', on); t.setAttribute('aria-selected', on); });
+  const est = tipo === 'est';
+  const lista = est ? DATA.reglamento.estudiantes : DATA.reglamento.docentes;
+  const titulo = est ? 'Reglamento para estudiantes' : 'Reglamento para docentes y personal administrativo';
+  $('#reg-contenido').innerHTML = `<h3 class="subtitulo">${titulo}</h3><ol class="normas">${lista.map(x => `<li>${x}</li>`).join('')}</ol>`;
+}
+
+function renderHorarios(){
+  $('#tabla-horarios').innerHTML = `
+    <thead><tr><th>Área o actividad</th><th>Horario propuesto</th></tr></thead>
+    <tbody>${DATA.horarios.map(([a, h]) => `<tr><td><b>${a}</b></td><td>${h}</td></tr>`).join('')}</tbody>`;
+  $('#jornada').innerHTML = DATA.jornada.map(j =>
+    `<li><time>${j.h}</time><strong>${j.t}</strong><p>${j.d}</p></li>`).join('');
+}
+
+function renderContactos(){
+  $('#contactos-lista').innerHTML = DATA.contactos.map(c =>
+    `<article class="card"><span class="icono">${c.i}</span><h3>${c.depto}</h3>
+     <p class="resp">${c.resp}</p>
+     <div class="acciones"><a class="btn" href="tel:+52${c.tel}">📞 ${fmtTel(c.tel)}</a></div></article>`).join('');
+  $('#canales').innerHTML = DATA.canales.map(c =>
+    `<li><span>${c.i}</span><div>${c.href ? `<a href="${c.href}">${c.t}</a>` : c.t}</div></li>`).join('');
+}
+
+function renderPrestaciones(){
+  $('#prest-personal').innerHTML = `<span class="icono">💼</span><h3>Personal</h3>
+    <ul class="checks">${DATA.prestaciones.personal.map(x => `<li>${x}</li>`).join('')}</ul>`;
+  $('#prest-estudiantes').innerHTML = `<span class="icono">🎓</span><h3>Estudiantes</h3>
+    <ul class="checks">${DATA.prestaciones.estudiantes.map(x => `<li>${x}</li>`).join('')}</ul>`;
+}
+
+function renderSeguridad(){
+  $('#seg-ambitos').innerHTML = DATA.seguridad.map((a, i) =>
+    `<details class="acordeon" ${i === 0 ? 'open' : ''}>
+       <summary><span>${a.i}</span>${a.t}</summary>
+       <ul>${a.items.map(x => `<li>${x}</li>`).join('')}</ul>
+     </details>`).join('');
+  $('#protocolo').innerHTML = DATA.protocolo.map((p, i) =>
+    `<li><span class="num">${i + 1}</span><p>${p}</p></li>`).join('');
+}
+
+function renderQuiz(){
+  $('#quiz-form').innerHTML = DATA.quiz.map((q, i) => `
+    <fieldset class="pregunta">
+      <legend>${i + 1}. ${q.p}</legend>
+      ${q.ops.map((o, j) => `<label class="opcion"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}
+      <p class="retro" id="r${i}" hidden></p>
+    </fieldset>`).join('') +
+    `<div class="acciones"><button class="btn" type="submit">Enviar respuestas</button>
+     <button class="btn sec" type="reset">Limpiar</button></div>`;
+}
+
+/* =======================================================
+   4. NAVEGACIÓN, PROGRESO Y EVENTOS
+   ======================================================= */
+function mostrar(ruta = 'inicio', sub){
+  if(!RUTAS.includes(ruta)) ruta = 'inicio';
+  $$('.view').forEach(v => v.classList.toggle('activa', v.id === ruta));
+  $$('#nav button').forEach(b => {
+    const on = b.dataset.ruta === ruta;
+    b.classList.toggle('activo', on);
+    b.setAttribute('aria-current', on ? 'page' : 'false');
+  });
+  if(ruta === 'puesto') elegirPuesto(sub || puestoActual());
+  if(ruta !== 'inicio'){
+    const vis = LS.get('aig-visitados', []);
+    if(!vis.includes(ruta)){ vis.push(ruta); LS.set('aig-visitados', vis); }
+  }
+  actualizarProgreso();
+  $('#nav button.activo')?.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+  window.scrollTo({ top:0, behavior:'smooth' });
+  document.title = NOMBRES[ruta] + ' · Inducción AIG';
+}
+
+function enrutar(){
+  const [ruta, sub] = (location.hash.slice(1) || 'inicio').split('/');
+  mostrar(ruta, sub);
+}
+
+function actualizarProgreso(){
+  const v = LS.get('aig-visitados', []).length;
+  const total = RUTAS.length - 1;
+  const pct = Math.round(v / total * 100);
+  $('#barra-global').style.width = pct + '%';
+  $('#txt-global').textContent = `Has explorado ${v} de ${total} secciones (${pct}%)`;
+}
+
+function pintarSaludo(){
+  const n = LS.get('aig-nombre', '').trim();
+  $('#saludo').textContent = n
+    ? `¡Hola, ${n}! Te damos la bienvenida a la familia AIG 🦩`
+    : 'Escribe tu nombre para personalizar tu experiencia.';
+}
+
+function cambiarTarea(e){
+  const id = puestoActual();
+  const t = LS.get('aig-tareas', {});
+  const set = new Set(t[id] || []);
+  const i = +e.target.dataset.tarea;
+  if(e.target.checked) set.add(i); else set.delete(i);
+  t[id] = [...set];
+  LS.set('aig-tareas', t);
+  actualizarBarraPuesto(id);
+}
+
+const acciones = {
+  todo(){
+    const id = puestoActual(), p = buscarPuesto(id), t = LS.get('aig-tareas', {});
+    t[id] = p.funciones.map((_, i) => i);
+    LS.set('aig-tareas', t); elegirPuesto(id);
+  },
+  reiniciar(){
+    const id = puestoActual(), t = LS.get('aig-tareas', {});
+    t[id] = []; LS.set('aig-tareas', t); elegirPuesto(id);
+  },
+  copiar(){
+    navigator.clipboard?.writeText(location.href).then(() => alert('Enlace copiado ✔'));
+  }
+};
+
+function detectarPuestoFijo(){
+  const params = new URLSearchParams(location.search);
+  const puestoURL = params.get('puesto');
+  if(puestoURL && DATA.puestos.some(p => p.id === puestoURL)){
+    LS.set('aig-puesto-fijo', puestoURL);
+    LS.set('aig-ultimo-puesto', puestoURL);
+  }
+}
+
+function init(){
+  detectarPuestoFijo();
+  $('#nav').innerHTML = RUTAS.map(r => `<button data-ruta="${r}">${NOMBRES[r]}</button>`).join('');
+  $('#anio').textContent = new Date().getFullYear();
+
+  renderFilosofia(); renderIdentidad(); renderOrganigrama(); renderPoliticas();
+  setReglamento('est'); renderHorarios(); renderContactos(); renderPrestaciones();
+  renderSeguridad(); renderQuiz();
+
+  const nombre = $('#nombre');
+  nombre.value = LS.get('aig-nombre', '');
+  nombre.addEventListener('input', e => { LS.set('aig-nombre', e.target.value); pintarSaludo(); });
+  pintarSaludo();
+
+  document.addEventListener('click', e => {
+    const ir = e.target.closest('[data-ir]');
+    if(ir){ location.hash = 'puesto/' + ir.dataset.ir; return; }
+    const ruta = e.target.closest('[data-ruta]');
+    if(ruta){ location.hash = ruta.dataset.ruta; return; }
+    const tab = e.target.closest('[data-tab]');
+    if(tab){ setReglamento(tab.dataset.tab); return; }
+    const acc = e.target.closest('[data-accion]');
+    if(acc){ acciones[acc.dataset.accion](); }
+  });
+
+  document.addEventListener('change', e => {
+    if(e.target.matches('[data-tarea]')) cambiarTarea(e);
+  });
+
+  const quiz = $('#quiz-form');
+  quiz.addEventListener('reset', () => {
+    $$('.retro').forEach(r => r.hidden = true);
+    $('#resultado').textContent = '';
+  });
+  quiz.addEventListener('submit', e => {
+    e.preventDefault();
+    let aciertos = 0, sinResp = 0;
+    DATA.quiz.forEach((q, i) => {
+      const sel = document.querySelector(`input[name="q${i}"]:checked`);
+      const r = $('#r' + i);
+      r.hidden = false;
+      if(!sel){ sinResp++; r.className = 'retro no'; r.textContent = 'Selecciona una respuesta.'; return; }
+      const ok = +sel.value === q.r;
+      if(ok) aciertos++;
+      r.className = 'retro ' + (ok ? 'ok' : 'no');
+      r.textContent = ok ? '¡Correcto! ✔' : `Respuesta correcta: ${q.ops[q.r]}`;
+    });
+    if(sinResp){ $('#resultado').textContent = `Te faltan ${sinResp} pregunta(s) por responder.`; return; }
+    const total = DATA.quiz.length, pct = Math.round(aciertos / total * 100);
+    const mejor = Math.max(LS.get('aig-quiz', 0), pct);
+    LS.set('aig-quiz', mejor);
+    $('#resultado').innerHTML = `<strong>Tu calificación: ${aciertos} de ${total} (${pct}%)</strong>` +
+      (pct >= 80 ? ' · ¡Excelente, completaste tu inducción! 🎉' : ' · Repasa las secciones y vuelve a intentarlo.') +
+      `<br><small>Mejor puntaje: ${mejor}%</small>`;
+  });
+
+  window.addEventListener('hashchange', enrutar);
+  enrutar();
+}
+
+init();
+</script>
+</body>
+</html>
